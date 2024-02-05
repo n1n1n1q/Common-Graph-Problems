@@ -27,12 +27,13 @@ def bellman_ford(graph: nx.Graph):
             while v!=u:
                 cycle.append(v)
                 v=predecessor[v]
-            raise ValueError(f'Negative cycle detected, {cycle}')
+            return f'Negative cycle detected, {cycle}'
     return distance
 
 if __name__=='__main__':
     import graph as gr
     G=gr.gnp_random_connected_graph(5, 100, True)
+
     print(bellman_ford(G))
     from networkx.algorithms import bellman_ford_predecessor_and_distance
     try:
@@ -41,3 +42,9 @@ if __name__=='__main__':
             print(f"Distance to {k}:", v)
     except:
         print("Negative cycle detected")
+    import time_test
+    graphs_list=[gr.gnp_random_connected_graph(i,100,True) for i in [5,10,25,50,100,1000]]
+    a=time_test.Tester(bellman_ford)
+    a.time_test(1000,graphs_list)
+    a.draw_graph()
+
