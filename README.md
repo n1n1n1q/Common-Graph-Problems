@@ -3,12 +3,12 @@ Common graph problems implementation on Python with NetworkX library.
 ## Implemented algorithms:  
 #### MST (Minimum Spanning Tree):
 * Kruskal algorithm
-* Prim's algorithm
-* GraphGeneration.ipynb  
+* Prim's algorithm  
+*analysis and conclusion can be found here: MSTandShortestPath.ipynb* 
 #### Shortest path (with negative edges):  
 * Bellman-Ford algorithm
-* Floyd-Warshall algorithm
-* GraphGeneration.ipynb  
+* Floyd-Warshall algorithm  
+*analysis and conclusion can be found here: MSTandShortestPath.ipynb*   
 #### Decision Tree Classifier:  
 * DecisionTreeClassiffier.ipynb
 #### Additionally Implemented modules:
