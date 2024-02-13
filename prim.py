@@ -3,23 +3,23 @@ Prim's algorithm implementation
 """
 import networkx as nx
 
-def prim(graph: nx.Graph) -> nx.Graph or None:
+def prim(graph,start=0):
     """
-    Finds a MST for given graph.
-    Returns none if graph is disconnected
+    Prim's MST algorithm
     """
     if not nx.is_connected(graph):
         return None
-    result_graph=nx.Graph()
-    result_graph.add_node(0)
-    while set(result_graph.nodes)!=set(graph.nodes):  
-        min_edge=min(((u,v,weight['weight']) for u,v,weight in graph.edges(data=True) \
-            if (u in result_graph.nodes and v not in result_graph.nodes) or\
-                  (u not in result_graph.nodes and v in result_graph.nodes)),\
-                    key=lambda x:x[2])
-        result_graph.add_edge(min_edge[0],min_edge[1],weight=min_edge[2])
-    return result_graph
-
+    visited=set()
+    res_graph=nx.Graph()
+    edges=sorted([(u,v,w['weight']) for u,v,w in graph.edges(data=True)],key=lambda x:x[2])
+    visited.add(start)
+    while len(visited)!=len(graph.nodes):
+        for u,v,w in edges:
+            if (u in visited and v not in visited) or (v in visited and u not in visited):
+                res_graph.add_edge(u,v,weight=w)
+                visited.add(v)
+                visited.add(u)
+    return res_graph
 
 if __name__=='__main__':
     import matplotlib.pyplot as plt
